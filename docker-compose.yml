@@ -5,18 +5,16 @@ services:
       target: dev
     stdin_open: true
     tty: true
+    env_file:
+      - .env
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
     ports:
       - "3000:3000"
     volumes:
       - .:/app
-    environment:
-      - DATABASE_HOST=db
-      - DATABASE_PORT=5432
-      - DATABASE_USER=postgres
-      - DATABASE_PASSWORD=postgres
-      - DATABASE_NAME=nestjs
-      - CHOKIDAR_USEPOLLING=true
-      - WATCHPACK_POLLING=true
+      - /app/node_modules
     depends_on:
       - db
 
@@ -27,7 +25,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=nestjs
+      - POSTGRES_DB=starter_db
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
