@@ -1,7 +1,8 @@
-import { Entity, PrimaryKey } from "@mikro-orm/core";
+import { Entity, Property } from "@mikro-orm/core";
+import { CustomBaseEntity } from "src/commons/database/custom-base.entity";
 
 @Entity()
-export class User {
-    @PrimaryKey()
-    id!: string;
+export class User extends CustomBaseEntity {
+    @Property()
+    email!: string;
 }

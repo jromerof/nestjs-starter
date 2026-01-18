@@ -17,21 +17,27 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "db:create-migration": "mikro-orm migration:create",
+    "db:up": "mikro-orm migration:up",
+    "db:down": "mikro-orm migration:down",
+    "db:seed": "mikro-orm seeder:run"
   },
   "dependencies": {
+    "@mikro-orm/cli": "^6.6.4",
     "@mikro-orm/core": "^6.6.4",
     "@mikro-orm/migrations": "^6.6.4",
     "@mikro-orm/nestjs": "^6.1.1",
     "@mikro-orm/postgresql": "^6.6.4",
     "@mikro-orm/reflection": "^6.6.4",
+    "@mikro-orm/seeder": "^6.6.4",
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
     "@nestjs/mapped-types": "^2.1.0",
     "@nestjs/platform-express": "^11.0.1",
-    "dotenv": "^17.2.3",
     "@nestjs/platform-fastify": "^11.1.12",
+    "dotenv": "^17.2.3",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "zod": "^4.3.5"
@@ -79,5 +85,15 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "mikro-orm": {
+    "configPaths": [
+      "./src/database/mikro-orm.config.ts"
+    ],
+    "tsNode": {
+      "require": [
+        "tsconfig-paths/register"
+      ]
+    }
   }
 }
