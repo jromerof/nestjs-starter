@@ -1,8 +1,8 @@
 import { Entity, Property } from "@mikro-orm/core";
-import { CustomBaseEntity } from "src/commons/database/custom-base.entity";
+import { SoftDeleatableEntity } from "src/commons/database/soft-deleatable.entity";
 
 @Entity()
-export class User extends CustomBaseEntity {
+export class User extends SoftDeleatableEntity {
     @Property()
     email!: string;
 }
