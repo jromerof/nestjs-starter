@@ -4,6 +4,7 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
+import cookie from '@fastify/cookie'
 
 
 async function bootstrap() {
@@ -11,6 +12,13 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter()
   );
+
+  await app.register(cookie);
+
+  app.enableCors({
+    origin: process.env.CORS_ORIGINS?.split(',') || true,
+    credentials: true,
+  });
 
   app.enableShutdownHooks();
 

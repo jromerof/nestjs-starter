@@ -1,4 +1,3 @@
-import { debug } from 'console';
 import { z } from 'zod';
 
 const databaseConnectionSchema = z.object({
