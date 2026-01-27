@@ -5,6 +5,7 @@ import {
 } from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
 import cookie from '@fastify/cookie'
+import { ValidationPipe } from '@nestjs/common';
 
 
 async function bootstrap() {
@@ -19,6 +20,11 @@ async function bootstrap() {
     origin: process.env.CORS_ORIGINS?.split(',') || true,
     credentials: true,
   });
+
+  app.useGlobalPipes(new ValidationPipe({
+    whitelist: true,
+    transform: true,
+  }));
 
   app.enableShutdownHooks();
 
