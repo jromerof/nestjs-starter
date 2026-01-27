@@ -1,4 +1,4 @@
-import { Cascade, Collection, Entity, Enum, OneToMany, Property } from "@mikro-orm/core";
+import { Cascade, Collection, Entity, Enum, OneToMany, Opt, Property } from "@mikro-orm/core";
 import { OAuthAccount } from "src/oauth/entities/oauth-account.entity";
 import { AuthStatus } from "src/oauth/enums/auth-status.enum";
 import { SoftDeleatableEntity } from "src/commons/database/soft-deleatable.entity";
@@ -10,7 +10,7 @@ export class User extends SoftDeleatableEntity {
 
     @Enum(() => AuthStatus)
     @Property()
-    authStatus: AuthStatus = AuthStatus.PENDING_VERIFICATION;
+    authStatus: Opt<AuthStatus> = AuthStatus.PENDING_VERIFICATION;
 
     @Property({ type: 'date', nullable: true })
     emailVerifiedAt: Date | null = null;
